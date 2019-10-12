@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>PropertyBasedEffect</Name>
+    <Description>A project for creating a Paint.NET Effect plugin using IndirectUI</Description>
+    <Icon>__TemplateIcon.png</Icon>
+    <ProjectType>CSharp</ProjectType>
+    <LanguageTag>csharp</LanguageTag>
+    <PlatformTag>windows</PlatformTag>
+    <ProjectTypeTag>desktop</ProjectTypeTag>
+    <ProjectTypeTag>Paint.NET</ProjectTypeTag>
+    <RequiredFrameworkVersion>4.7</RequiredFrameworkVersion>
+    <SortOrder>1000</SortOrder>
+    <TemplateID>dc1364d7-6a89-4959-a932-3d64b6a5fd0a</TemplateID>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>MyPropertyBasedEffect</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="ProjectTemplate.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="true">Effect.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true">PluginSupportInfo.cs</ProjectItem>
+    </Project>
+    <CustomParameters>
+      <CustomParameter Name="$baseClass$" Value="PropertyBasedEffect"/>
+    </CustomParameters>
+  </TemplateContent>
+</VSTemplate>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>PropertyBasedFileType</Name>
+    <Description>A project for creating a Paint.NET FileType plugin using IndirectUI</Description>
+    <Icon>__TemplateIcon.png</Icon>
+    <ProjectType>CSharp</ProjectType>
+    <LanguageTag>csharp</LanguageTag>
+    <PlatformTag>windows</PlatformTag>
+    <ProjectTypeTag>desktop</ProjectTypeTag>
+    <ProjectTypeTag>Paint.NET</ProjectTypeTag>
+    <RequiredFrameworkVersion>4.7</RequiredFrameworkVersion>
+    <SortOrder>1000</SortOrder>
+    <TemplateID>ac722acd-5c76-431f-90f0-bb954c85df3c</TemplateID>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>MyFileType</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="ProjectTemplate.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="true">FileType.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
