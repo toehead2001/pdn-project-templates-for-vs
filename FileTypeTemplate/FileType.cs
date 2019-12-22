@@ -1,7 +1,7 @@
 ﻿using PaintDotNet;
-using PaintDotNet.IndirectUI;
+$if$ ($baseClass$ == PropertyBasedFileType)using PaintDotNet.IndirectUI;
 using PaintDotNet.PropertySystem;
-using System;
+$endif$using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,18 +17,10 @@ namespace $safeprojectname$
         }
     }
 
-    internal class $safeprojectname$Plugin : PropertyBasedFileType
+    [PluginSupportInfo(typeof(PluginSupportInfo))]
+    internal class $safeprojectname$Plugin : $if$ ($baseClass$ == FileTypeTTokenTWidget) FileType<$safeprojectname$SaveConfigToken, $safeprojectname$SaveConfigWidget> $else$ $baseClass$ $endif$
     {
         private const string HeaderSignature = ".PDN";
-
-        // Names of the properties
-        private enum PropertyNames
-        {
-            Invert
-        }
-
-        // Defaults
-        private const bool defaultInvert = false;
 
         /// <summary>
         /// Constructs a ExamplePropertyBasedFileType instance
@@ -44,23 +36,16 @@ namespace $safeprojectname$
                     SupportsLayers = false
                 })
         {
-        }
-
-        /// <summary>
-        /// Determines if the document was saved without altering the pixel values.
-        ///
-        /// Any settings that change the pixel values should return 'false'.
-        ///
-        /// Because Paint.NET prompts the user to flatten the image, flattening should not be
-        /// considered.
-        /// For example, a 32-bit PNG will return 'true' even if the document has multiple layers.
-        /// </summary>
-        protected override bool IsReflexive(PropertyBasedSaveConfigToken token)
+}
+$if$ ($baseClass$ == PropertyBasedFileType)
+        // Names of the properties
+        private enum PropertyNames
         {
-            bool invert = token.GetProperty<BooleanProperty>(PropertyNames.Invert).Value;
-
-            return invert == false;
+            Invert
         }
+
+        // Defaults
+        private const bool defaultInvert = false;
 
         /// <summary>
         /// Add properties to the dialog
@@ -90,15 +75,73 @@ namespace $safeprojectname$
             configUI.SetPropertyControlValue(PropertyNames.Invert, ControlInfoPropertyNames.Description, "Invert");
 
             return configUI;
+}
+$endif$ $if$ ($baseClass$ == FileTypeTTokenTWidget)
+        protected override $safeprojectname$SaveConfigToken OnCreateDefaultSaveConfigTokenT()
+        {
+            return new $safeprojectname$SaveConfigToken();
         }
 
+        protected override $safeprojectname$SaveConfigWidget OnCreateSaveConfigWidgetT()
+        {
+            return new $safeprojectname$SaveConfigWidget();
+}
+$endif$ $if$ ($baseClass$ == FileType)
+        protected override SaveConfigToken OnCreateDefaultSaveConfigToken()
+        {
+            return new $safeprojectname$SaveConfigToken();
+        }
+
+        public override SaveConfigWidget CreateSaveConfigWidget()
+        {
+            return new $safeprojectname$SaveConfigWidget();
+        }
+$endif$
         /// <summary>
-        /// Saves a document to a stream respecting the properties
+        /// Determines if the document was saved without altering the pixel values.
+        ///
+        /// Any settings that change the pixel values should return 'false'.
+        ///
+        /// Because Paint.NET prompts the user to flatten the image, flattening should not be
+        /// considered.
+        /// For example, a 32-bit PNG will return 'true' even if the document has multiple layers.
         /// </summary>
-        protected override void OnSaveT(Document input, Stream output, PropertyBasedSaveConfigToken token, Surface scratchSurface, ProgressEventHandler progressCallback)
+$if$ ($baseClass$ == PropertyBasedFileType)
+        protected override bool IsReflexive(PropertyBasedSaveConfigToken token)
         {
             bool invert = token.GetProperty<BooleanProperty>(PropertyNames.Invert).Value;
 
+            return invert == false;
+        }
+$endif$ $if$ ($baseClass$ == FileTypeTTokenTWidget)
+        protected override bool IsReflexive($safeprojectname$SaveConfigToken token)
+        {
+            return token.Invert == false;
+}
+$endif$ $if$ ($baseClass$ == FileType)
+        public override bool IsReflexive(SaveConfigToken token)
+        {
+            $safeprojectname$SaveConfigToken configToken = ($safeprojectname$SaveConfigToken)token;
+            return configToken.Invert == false;
+        }
+$endif$
+        /// <summary>
+        /// Saves a document to a stream respecting the properties
+        /// </summary>
+$if$ ($baseClass$ == PropertyBasedFileType)      
+        protected override void OnSaveT(Document input, Stream output, PropertyBasedSaveConfigToken token, Surface scratchSurface, ProgressEventHandler progressCallback)
+        {
+            bool invert = token.GetProperty<BooleanProperty>(PropertyNames.Invert).Value;
+$endif$ $if$ ($baseClass$ == FileTypeTTokenTWidget)
+        protected override void OnSaveT(Document input, Stream output, $safeprojectname$SaveConfigToken token, Surface scratchSurface, ProgressEventHandler progressCallback)
+        {
+            bool invert = token.Invert;
+$endif$ $if$ ($baseClass$ == FileType)
+        protected override void OnSave(Document input, Stream output, SaveConfigToken token, Surface scratchSurface, ProgressEventHandler progressCallback)
+{
+            $safeprojectname$SaveConfigToken configToken = ($safeprojectname$SaveConfigToken)token;
+            bool invert = configToken.Invert;
+$endif$
             using (RenderArgs args = new RenderArgs(scratchSurface))
             {
                 // Render a flattened view of the Document to the scratch surface.

@@ -20,6 +20,12 @@
     <Project File="ProjectTemplate.csproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" OpenInEditor="true">FileType.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true">PluginSupportInfo.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true">SaveConfigToken.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true">SaveConfigWidget.cs</ProjectItem>
     </Project>
+    <CustomParameters>
+      <CustomParameter Name="$baseClass$" Value="FileType"/>
+    </CustomParameters>
   </TemplateContent>
 </VSTemplate>

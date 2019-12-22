@@ -48,9 +48,13 @@
 		<Reference Include="System.Data"/>
 		<Reference Include="System.Xml"/>
 		<Reference Include="System.Drawing"/>
-	</ItemGroup>
+		$if$ ($baseClass$ != PropertyBasedEffect) <Reference Include="System.Windows.Forms"/> $endif$
+  </ItemGroup>
 	<ItemGroup>
+		$if$ ($baseClass$ != PropertyBasedFileType) <Compile Include="SaveConfigToken.cs" />
+		<Compile Include="SaveConfigWidget.cs" />$endif$
 		<Compile Include="FileType.cs" />
+		<Compile Include="PluginSupportInfo.cs" />
 		<Compile Include="Properties\AssemblyInfo.cs" />
 	</ItemGroup>
 	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
