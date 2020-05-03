@@ -6,6 +6,7 @@
         <Description xml:space="preserve">Project Templates for creating Paint.NET plugins.</Description>
         <MoreInfo>https://forums.getpaint.net/topic/115325-project-templates-for-visual-studio/</MoreInfo>
         <Tags>Paint.NET, PaintDotNet</Tags>
+        <Preview>true</Preview>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0, 17.0)" />
