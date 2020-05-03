@@ -18,6 +18,7 @@
         <Prerequisite Id="Microsoft.Net.Component.4.7.2.SDK" Version="[15.0, 17.0)" DisplayName=".NET Framework 4.7.2 SDK" />
     </Prerequisites>
     <Assets>
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
         <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="EffectTemplate" d:TargetPath="|EffectTemplate;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
         <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="FileTypeTemplate" d:TargetPath="|FileTypeTemplate;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
     </Assets>
