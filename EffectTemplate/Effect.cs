@@ -100,7 +100,7 @@ $endif$
         private void Render(Surface dst, Surface src, Rectangle rect)
         {
             // Delete any of these lines you don't need
-            Rectangle selection = EnvironmentParameters.GetSelection(src.Bounds).GetBoundsInt();
+            Rectangle selection = EnvironmentParameters.SelectionBounds;
             int CenterX = ((selection.Right - selection.Left) / 2) + selection.Left;
             int CenterY = ((selection.Bottom - selection.Top) / 2) + selection.Top;
             ColorBgra PrimaryColor = EnvironmentParameters.PrimaryColor;
